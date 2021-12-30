@@ -6,8 +6,13 @@
           <ion-col>
             <ion-text>
               <div class="ion-text-center">
-                <h1>Standing</h1>
-                <p>{{ challengeTitle }}</p>
+                <h1>{{ challengeTitle }}</h1>
+              </div>
+            </ion-text>
+            <ion-text color="primary">
+              <div class="ion-text-center">
+              <p>ข้อมูลแสดงเฉพาะรายการที่ submit เข้าโครงการเท่านั้น
+                กรุณากดปุ่ม refresh ด้านล่างเพื่ออัพเดตข้อมูล</p>
               </div>
             </ion-text>
           </ion-col>
@@ -31,6 +36,33 @@
                 </ion-col>
                 <ion-col>
                   <ion-badge color="warning">{{ mySteps }}</ion-badge>
+                </ion-col>
+                <ion-col>
+                  <ion-label class="ion-text-right">steps</ion-label>
+                </ion-col>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-list>
+              <ion-list-header>
+                <h4>Top 10 Participants</h4>
+              </ion-list-header>
+              <ion-item v-for="(item, index) in sortedUID.slice(0, 10)" :key="item">
+                <ion-col>
+                  <ion-label>
+                    {{ index + 1 }}
+                  </ion-label>
+                </ion-col>
+                <ion-col size="7">
+                  <ion-label>
+                    {{ userNames[item] }}
+                  </ion-label>
+                </ion-col>
+                <ion-col>
+                  <ion-badge color="warning">{{ sortedUsteps[index][1] }}</ion-badge>
                 </ion-col>
                 <ion-col>
                   <ion-label class="ion-text-right">steps</ion-label>
@@ -102,7 +134,7 @@ import {defineComponent} from 'vue';
 import { arrowBackCircle, refreshOutline } from 'ionicons/icons'
 import {mapGetters, mapState} from "vuex";
 import { db } from '@/firebase';
-import {collection, where, getDocs, query} from "firebase/firestore";
+import {collection, where, getDocs, query, getDoc, doc} from "firebase/firestore";
 export default defineComponent({
   props: {
     timeout: { type: Number, default: 7000 },
@@ -142,6 +174,7 @@ export default defineComponent({
       sortedGroupSteps: [],
       sortedGroupIds: [],
       challengeTitle: '',
+      userNames: {},
     }
   },
   computed: {
@@ -192,8 +225,16 @@ export default defineComponent({
         this.sortedUsteps.push([uid, this.userSteps[uid]])
       }
       this.sortedUsteps.sort((a, b)=>{
-        return a[1] - b[1];
+        return b[1] - a[1];
       })
+      for (const item of this.sortedUsteps.slice(0, 10)) {
+        let uRef = collection(db, 'profiles')
+        let uSnapshot = await getDocs(query(uRef, where('userId', '==', item[0])))
+        for (const u of uSnapshot.docs) {
+          let profile = u.data()
+          this.userNames[item[0]] = profile.firstNameTh
+        }
+      }
       for (let item of this.sortedUsteps) {
         this.sortedUID.push(item[0])
       }
@@ -201,16 +242,18 @@ export default defineComponent({
         this.sortedGroupSteps.push([gid, this.groupSteps[gid]])
       }
       this.sortedGroupSteps.sort((a, b) => {
-        return a[1] - b[1]
+        return b[1] - a[1]
       })
       for (let item of this.sortedGroupSteps) {
         this.sortedGroupIds.push(item[0])
       }
-      console.log(this.groupNames)
     }
   },
   async mounted() {
     this.challengeId = this.$route.params.recordId
+    let challengeRef = doc(collection(db, 'challenges'), this.challengeId)
+    let challengeSnapshot = await getDoc(challengeRef)
+    this.challengeTitle = challengeSnapshot.data().title
     let groupRef = collection(db, 'userGroups')
     let groupSnapshot = await getDocs(groupRef)
     for (let rec of groupSnapshot.docs) {

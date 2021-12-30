@@ -14,7 +14,7 @@
         <ion-row>
           <ion-col>
             <ion-card>
-              <img src="https://source.unsplash.com/J154nEkpzlQ">
+              <img :src="challenge.imageUrl !== '' ? challenge.imageUrl : 'https://source.unsplash.com/J154nEkpzlQ'">
               <ion-card-header>
                 <ion-card-title>{{ challenge.title }}</ion-card-title>
               </ion-card-header>

@@ -19,7 +19,7 @@
         <ion-row>
           <ion-col>
             <ion-card>
-              <img :src="activity_records.length > 0 ? imageLogos[activity_records.slice(0, 4)[0].type] : ''">
+              <img :src="activity_records.length > 0 ? imageLogos[activity_records.slice(0, 4)[0].type] : 'https://source.unsplash.com/gJtDg6WfMlQ'">
               <ion-card-header>
                 <ion-card-title>Your Recent Activities</ion-card-title>
               </ion-card-header>
