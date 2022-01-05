@@ -40,6 +40,19 @@
             </ion-card>
           </ion-col>
         </ion-row>
+        <ion-row v-if="challenges.length == 0">
+          <ion-col>
+            <ion-card>
+              <img src='https://source.unsplash.com/AmhdN68wjPc'>
+              <ion-card-header>
+                <ion-card-title>Challenges will be available for you to join soon!</ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                โครงการต่างๆ จะปรากฎให้คุณเข้าร่วมเมื่อแอดมินจัดกลุ่มให้คุณแล้ว กรุณากลับมาตรวจสอบอีกครั้ง ระหว่างนี้ท่านสามารถบันทึกข้อมูลการออกกำลังกายเพื่อ submit เข้าโครงการภายหลังได้
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
         <ion-row v-for="ch in challenges" :key="ch.id">
           <ion-col>
             <ion-card>

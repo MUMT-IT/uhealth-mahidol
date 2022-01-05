@@ -144,8 +144,6 @@ export default defineComponent({
     ...mapGetters(['userId']),
     isFormValid () {
       return (this.startDateTime != '' || this.startDateTime != null)
-          && (this.min != 0)
-          && (this.estimatedCal > 0)
     },
     estimatedCal () {
       let Cainten = 1

@@ -215,13 +215,14 @@ export default defineComponent({
         if (!(data.userId in this.userSteps)) {
           this.userSteps[data.userId] = 0
         }
-        this.userSteps[data.userId] += parseInt(data.steps)
+        let stepCount = isNaN(parseInt(data.steps)) ? 0 : parseInt(data.steps)
+        this.userSteps[data.userId] += stepCount
         if (!(data.userGroupId in this.groupSteps)) {
           this.groupSteps[data.userGroupId] = 0
         }
-        this.groupSteps[data.userGroupId] += parseInt(data.steps)
+        this.groupSteps[data.userGroupId] += stepCount
       }
-      for (var uid in this.userSteps) {
+      for (let uid in this.userSteps) {
         this.sortedUsteps.push([uid, this.userSteps[uid]])
       }
       this.sortedUsteps.sort((a, b)=>{

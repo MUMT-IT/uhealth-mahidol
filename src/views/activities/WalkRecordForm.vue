@@ -140,10 +140,7 @@ export default defineComponent({
   },
   computed: {
     isFormValid () {
-      return (this.startDateTime != '' || this.startDateTime != null)
-          && (this.min != '' || this.min != null)
-          && (this.estimatedCal > 0)
-          && (this.steps > 0)
+      return (this.startDateTime != '' || this.startDateTime != null) && (this.steps > 0)
     },
     estimatedCal () {
       let Cainten = 1
