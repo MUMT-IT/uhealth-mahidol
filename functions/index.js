@@ -7,11 +7,11 @@ const axios = require('axios');
 exports.authenticate = functions.https.onRequest((request, response) => {
     functions.logger.info("Token", request.headers.authorization)
     if (request.headers.authorization !== undefined) {
-        axios.post('https://dcu-sitauth.mahidol.ac.th/auth/v1/sso/profile',
+        axios.post('https://dcu-auth.mahidol.ac.th/auth/v1/sso/profile',
             {
                 "token": request.headers.authorization,
-                "clientId": "8fd61a82-ba20-4278-82b0-5b175b489189",
-                "clientSecret": "x67IirZdDTCHp1pLor6mAdVT107qZ0Yv1mi8O6VB"
+                "clientId": "65392257-81f2-42dc-a92d-d18bf06b4c42",
+                "clientSecret": "wx8JmyLXec6fWPnj5jepUIrF4JNfFTxFikWN476I"
             })
             .then(res => {
                 let data = res.data.data

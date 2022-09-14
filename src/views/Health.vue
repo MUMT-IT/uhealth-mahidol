@@ -16,13 +16,13 @@
                 <ion-item-divider>
                   <ion-label>Body</ion-label>
                 </ion-item-divider>
-<!--                <ion-item inset="true" detail href="/tabs/home">-->
-<!--                  <ion-icon slot="start" :icon="waterOutline"></ion-icon>-->
-<!--                  <ion-label>-->
-<!--                    Lab tests-->
-<!--                    <p>ผลการตรวจทางห้องปฏิบัติการ</p>-->
-<!--                  </ion-label>-->
-<!--                </ion-item>-->
+                <ion-item inset="true" detail href="/tabs/home">
+                  <ion-icon slot="start" :icon="waterOutline"></ion-icon>
+                  <ion-label>
+                    Lab tests
+                    <p>ผลการตรวจทางห้องปฏิบัติการ</p>
+                  </ion-label>
+                </ion-item>
                 <ion-item inset="true" detail @click="$router.push({name:'weight'})">
                   <ion-icon slot="start" :icon="scaleOutline"></ion-icon>
                   <ion-label>
@@ -30,10 +30,10 @@
                     <p>น้ำหนักตัว</p>
                   </ion-label>
                 </ion-item>
-<!--                <ion-item inset="true" detail href="/tabs/home" class="ion-margin-bottom">-->
-<!--                  <ion-icon slot="start" :icon="manOutline"></ion-icon>-->
-<!--                  <ion-label>Body Composition</ion-label>-->
-<!--                </ion-item>-->
+                <ion-item inset="true" detail href="/tabs/home" class="ion-margin-bottom">
+                  <ion-icon slot="start" :icon="manOutline"></ion-icon>
+                  <ion-label>Body Composition</ion-label>
+                </ion-item>
               </ion-item-group>
               <ion-item-group>
                 <ion-item-divider>
@@ -84,13 +84,13 @@
                     <p>เป้าหมาย</p>
                   </ion-label>
                 </ion-item>
-<!--                <ion-item inset="true" detail href="/milestones">-->
-<!--                  <ion-icon slot="start" :icon="flagOutline"></ion-icon>-->
-<!--                  <ion-label>-->
-<!--                    Milestones-->
-<!--                    <p>ความสำเร็จ</p>-->
-<!--                  </ion-label>-->
-<!--                </ion-item>-->
+                <ion-item inset="true" detail href="/milestones">
+                  <ion-icon slot="start" :icon="flagOutline"></ion-icon>
+                  <ion-label>
+                    Milestones
+                    <p>ความสำเร็จ</p>
+                  </ion-label>
+                </ion-item>
               </ion-item-group>
             </ion-list>
           </ion-col>
